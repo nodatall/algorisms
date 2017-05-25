@@ -34,7 +34,7 @@ The minute hand moves 6 degrees every minute. The hour hand moves 0.5 degrees ev
 Calculate the position of the minute hand (degrees) using `minutes * 6`.
 Calculate the position of the hour hand (degrees) using `hour * 30 + minutes * 0.5`.
 Find the angle between them by subtracting and getting the absolute value.
-Then modulo 180 find the smaller angle.
+If the angle is greater than 180 degrees, find the explementary angle by  subtracting from 360 degrees.
 
 ---
 Based on [this](http://www.techiedelight.com/angle-between-hour-minute-hand/)

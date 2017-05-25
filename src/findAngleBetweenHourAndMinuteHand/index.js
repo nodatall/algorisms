@@ -5,5 +5,7 @@ export default time => {
   const minuteAngle = minute * 6
   const hourAngle = hour * 30 + minute * 0.5
 
-  return Math.abs(hourAngle - minuteAngle) % 180
+  const difference = Math.abs(hourAngle - minuteAngle)
+
+  return difference <= 180 ? difference : 360 - difference
 }

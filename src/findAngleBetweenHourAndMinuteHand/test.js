@@ -26,5 +26,21 @@ test('findAngleBetweenHourAndMinuteHand()', t => {
     'returns the correct result'
   )
 
+  time = '12:01'
+
+  t.equal(
+    findAngleBetweenHourAndMinuteHand(time),
+    5.5,
+    'returns the correct result'
+  )
+
+  time = '11:59'
+
+  t.equal(
+    findAngleBetweenHourAndMinuteHand(time),
+    5.5,
+    'returns the correct result'
+  )
+
   t.end()
 })
