@@ -38,5 +38,4 @@ export default arr => {
     currentMax = Math.max( maxSoFar, currentMax )
   }
   return currentMax
-
 }
