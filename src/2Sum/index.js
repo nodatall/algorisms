@@ -23,7 +23,7 @@ const mergeSort = arr => {
   )
 }
 
-export default (arr, targetSum) => {
+export default ( arr, targetSum ) => {
   arr = mergeSort( arr )
 
   let left = 0,
@@ -42,3 +42,39 @@ export default (arr, targetSum) => {
 
   return [ arr[left], arr[right] ]
 }
+
+const binarySearch = ( arr, targetNum, start = 0, end = arr.length ) => {
+  const pivot = Math.floor( ( start + end ) / 2 )
+
+  if ( targetNum > arr[arr.length - 1] ) {
+    return null
+  }
+
+  if ( arr[end] === targetNum ) {
+    return end
+  } else if ( arr[start] === targetNum ) {
+    return start
+  } else if ( end - start === 1 ) {
+    return null
+  }
+
+  if ( arr[pivot] > targetNum ) {
+    return binarySearch( arr, targetNum, start, pivot )
+  } else {
+    return binarySearch( arr, targetNum, pivot, end )
+  }
+}
+
+const binary2Sum = ( arr, targetSum ) => {
+  arr = mergeSort( arr )
+  for ( let i = 0; i < arr.length; i++ ) {
+    const current = arr[i]
+    const desired = targetSum - arr[i]
+    const search = binarySearch( arr, desired )
+    if ( search ) {
+      return [current, desired]
+    }
+  }
+}
+
+export { binary2Sum }
