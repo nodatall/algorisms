@@ -1,8 +1,8 @@
 import test from '../../testSetup.js'
-import depthFirstSearch from './'
+import depthFirstSearch, { recursiveDFS } from './'
 import Node from './node'
 
-test('printMatrixInSpiralOrder()', t => {
+test('depthFirstSearch()', t => {
   const node4 = new Node('four')
   const node5 = new Node('five')
   const node3 = new Node('three', node4, node5)
@@ -25,6 +25,24 @@ test('printMatrixInSpiralOrder()', t => {
     depthFirstSearch(node1, 'ten'),
     node10,
     'returns the node with matching value'
+  )
+
+  t.end()
+})
+
+test('recursiveDFS()', t => {
+  const edgeList = [
+    [2,4],
+    [3,5,1],
+    [5,2],
+    [1],
+    [2,3]
+  ]
+
+  t.deepEqual(
+    recursiveDFS( edgeList, 1 ),
+    [ 0, 1, 2, 4, 3 ],
+    'returns search path'
   )
 
   t.end()
