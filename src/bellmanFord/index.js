@@ -2,14 +2,12 @@ export default ( graph, startNode ) => {
   const distances = new Array( graph.length ).fill( Infinity )
   distances[startNode] = 0
 
-  for ( let i = 0; i < graph.length - 1; i++ ) {
-    for ( let a = 0; a < graph.length; a++ ) {
-      for ( let z = 0; z < graph[a].length; z++ ) {
-        const curr = graph[a][z]
-        if ( (distances[a] + curr.weight) < 0 ) continue
-        distances[curr.node - 1] = Math.min( distances[curr.node - 1], distances[a] + curr.weight )
+  for ( let from = 0; from < graph.length - 1; from++ ) {
+      for ( let z = 0; z < graph[from].length; z++ ) {
+        const to = graph[from][z]
+        if ( (distances[from] + to.weight) < 0 ) continue
+        distances[to.node - 1] = Math.min( distances[to.node - 1], distances[from] + to.weight )
       }
-    }
   }
 
   return distances
