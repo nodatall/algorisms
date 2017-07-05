@@ -1,7 +1,7 @@
 {
   "name": "algorisms",
   "scripts": {
-    "test": "tape -r babel-register src/**/test.js"
+    "cows": "tape -r babel-register src/**/test.js"
   },
   "repository": {
     "type": "git",
