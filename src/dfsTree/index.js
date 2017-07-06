@@ -3,9 +3,9 @@ export default tree => {
 
   const dfs = (base, prev) => {
     path.push(base)
-    tree[base].forEach(node => {
-      if (node !== prev) {
-        dfs(node, base)
+    tree[base].forEach(child => {
+      if (child !== prev) {
+        dfs(child, base)
       }
     })
   }
@@ -14,3 +14,23 @@ export default tree => {
 
   return path
 }
+
+const numNodesInSubTrees = tree => {
+  const nodesCount = []
+
+  const dfs = (base, prev) => {
+    nodesCount[base] = 1
+    tree[base].forEach(child => {
+      if (child !== prev) {
+        dfs(child, base)
+        nodesCount[base] += nodesCount[child]
+      }
+    })
+  }
+
+  dfs(0)
+
+  return nodesCount
+}
+
+export { numNodesInSubTrees }
