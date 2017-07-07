@@ -38,3 +38,30 @@ function _dfsLongestPath (node, prev, tree) {
 
   return longestPath.concat(node)
 }
+
+const doubleDFSDiameter = tree => {
+  const fromAtoB = _farthestFrom( tree, 0 )
+  const fromBtoC = _farthestFrom( tree, fromAtoB.node )
+
+  return fromBtoC.path.length - 1
+}
+
+function _farthestFrom( tree, node, prev = node ) {
+  if ( tree[node].length === 1 && prev !== node ) return { path: [node], node }
+
+  let farthest = { path: [], node: null }
+
+  tree[node].forEach( friend => {
+    if ( friend !== prev ) {
+      const temp = _farthestFrom( tree, friend, node )
+      
+      if ( temp.path.length > farthest.path.length ) {
+        farthest = temp
+      }
+    }
+  })
+
+  return { path: [node, ...farthest.path], node: farthest.node }
+}
+
+export { doubleDFSDiameter }
